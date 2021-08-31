@@ -1,0 +1,5 @@
+# install module packages:
+npm install express mongoose
+
+# install module packages for development mode:
+npm install jest supertest node-mocks-http --save-dev
