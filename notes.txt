@@ -7,4 +7,28 @@ npm install jest supertest node-mocks-http --save-dev
 # start this app:
 npm run start
 
+# Define MongoDB:
+  a) Tables === Collections
+  b) Rows === Documents
+  c) Columns === Fields
+
+# Unit Test:
+  a) Unit Test 조건
+    1) 독립적이어야 하며, 어떤 테스트도 다른 테스트에 의존하지 않아야 한다.
+    2) 격리 되어야 한다. Ajax, Axios, LocalStorage 등 테스트 대상이 의존하는
+       것을 다른 것으로 대체해야 한다.
+
+# Jest Framework:
+  a) start Jest
+    1) npm install jest --save-dev
+    2) Test 스크립트 변경 => "test":"jest" or "jest --watchAll
+  b) Jest가 Test 파일을 찾는 방법:
+    - filename.test.js
+    - filename.spec.js
+    - All files inside "tests" directory
+  c) "describe" argument ( name, function ):
+    - 여러 관련 테스트를 그룹화하는 블록을 만드는 것.
+  d) "it" same as "test" argument ( name, function, timeout )
+    - 개별 테스트를 수행하는 곳, 하나하나의 테스트를 작은 문장처럼 설명한다.
+
 # temporarily memo:
