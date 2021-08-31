@@ -1,22 +1,22 @@
 const express = require('express');
+const config = require('./config/index.js');
+const connectDB = require('./config/connectDB.js');
+const productRoute = require('./routes/project.route.js');
 
 const app = express();
 
-app.set('port', process.env.PORT || 5000);
-// const PORT = 5000;
-
-const productRoute = require('./routes/project.route.js');
-
-app.use('/api/products', productRoute);
-
 app.use(express.json());
+app.use('/api/products', productRoute);
 
 app.get('/', (req, res) => {
 	res.send('Hello React TDD');
 });
 
-app.listen(app.get('port'), () => {
-	console.log(`## Status :>> Running on port ${app.get('port')}`);
+connectDB();
+
+app.listen(config.PORT, (error) => {
+	if (error) {
+		console.error(error);
+	}
+	console.info(`## Status :>> Running on port ${config.PORT}`);
 });
-// app.listen(PORT);
-// console.log(`## Status :>> Running on port ${PORT}`);
