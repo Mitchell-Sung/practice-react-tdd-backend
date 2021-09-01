@@ -1,7 +1,7 @@
-const express = require('express');
-const config = require('./config/index.js');
-const connectDB = require('./config/connectDB.js');
-const productRoute = require('./routes/route.project.js');
+import express from 'express';
+import config from './config/index.js';
+import connectDB from './config/connectDB.js';
+import productRoute from './routes/route.project.js';
 
 const app = express();
 

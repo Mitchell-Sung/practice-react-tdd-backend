@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "Learning React TDD",
 	"main": "server.js",
+	"type": "module",
 	"scripts": {
 		"test": "jest"
 	},

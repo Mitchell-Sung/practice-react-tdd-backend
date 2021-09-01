@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT;
 
-module.exports = { MONGODB_URI, PORT };
+export default { MONGODB_URI, PORT };

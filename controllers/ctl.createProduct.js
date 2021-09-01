@@ -1,7 +1,7 @@
-const Products = require('../models/model.Products.js');
+import Products from '../models/model.Products.js';
 
 const createProduct = (req, res, next) => {
 	Products.create(req.body);
 };
 
-module.exports = createProduct;
+export default createProduct;
