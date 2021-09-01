@@ -1,7 +1,18 @@
-test('two plus two is four', () => {
-	expect(2 + 2).toBe(4);
-});
+const httpMocks = require('node-mocks-http');
+const createProduct = require('../../controllers/ctl.createProduct.js');
+const Products = require('../../models/model.Products.js');
+const newProduct = require('../../data/newProduct.json');
 
-test('two plus two is not five', () => {
-	expect(2 + 2).not.toBe(5);
+Products.create = jest.fn();
+
+describe('Product Controller Create', () => {
+	test('should have a createProduct function', () => {
+		expect(typeof createProduct).toBe('function');
+	});
+
+	test('should call ProductModel.create', () => {
+		req.body = newProduct;
+		createProduct(req, res, next);
+		expect(Products.create).toBeCalledWith(newProduct);
+	});
 });
