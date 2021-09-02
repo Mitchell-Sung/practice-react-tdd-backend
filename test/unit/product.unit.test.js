@@ -10,7 +10,7 @@ let req, res, next;
 beforeEach(() => {
 	req = httpMocks.createRequest();
 	res = httpMocks.createResponse();
-	next = null;
+	next = jest.fn();
 });
 
 describe('Product Controller Create', () => {
@@ -39,6 +39,15 @@ describe('Product Controller Create', () => {
 		Products.create.mockReturnValue(newProduct);
 		await createProduct(req, res, next);
 		expect(res._getJSONData()).toStrictEqual(newProduct);
+	});
+
+	test('should handle errors', async () => {
+		// This part is the area handled by the MongoDB.
+		const errorMessage = { message: 'description property missing' };
+		const rejectedPromise = Promise.reject(errorMessage);
+		Products.create.mockReturnValue(rejectedPromise);
+		await createProduct(req, res, next);
+		expect(next).toBeCalledWith(errorMessage);
 	});
 });
 
