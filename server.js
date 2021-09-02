@@ -20,3 +20,5 @@ app.listen(config.PORT, (error) => {
 	}
 	console.info(`## Status :>> Running on port ${config.PORT}`);
 });
+
+export default app;
