@@ -22,22 +22,26 @@ describe('Product Controller Create', () => {
 		expect(typeof createProduct).toBe('function');
 	});
 
-	test('should call ProductModel.create', () => {
-		createProduct(req, res, next);
+	test('should call ProductModel.create', async () => {
+		await createProduct(req, res, next);
 		expect(Products.create).toBeCalledWith(newProduct);
 	});
 
-	test('should return 201 response code', () => {
-		createProduct(req, res, next);
+	test('should return 201 response code', async () => {
+		await createProduct(req, res, next);
 		expect(res.statusCode).toBe(201);
 		expect(res._isEndCalled()).toBeTruthy();
 	});
 
 	// Response results back
-	test('should return json body in response', () => {
+	test('should return json body in response', async () => {
 		// "Products.create" is created by using Mock function.
 		Products.create.mockReturnValue(newProduct);
-		createProduct(req, res, next);
+		await createProduct(req, res, next);
 		expect(res._getJSONData()).toStrictEqual(newProduct);
 	});
 });
+
+// async / await 사용한 비동기적 부분을 명확하게 이해할 것.
+
+//"description": "It's good!",

@@ -1,7 +1,8 @@
 import Products from '../models/model.Products.js';
 
-const createProduct = (req, res, next) => {
-	const createdProduct = Products.create(req.body);
+const createProduct = async (req, res, next) => {
+	const createdProduct = await Products.create(req.body);
+	console.log('## createdProduct :>> ', createdProduct);
 	res.status(201).json(createdProduct);
 };
 
