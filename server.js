@@ -14,6 +14,11 @@ app.get('/', (req, res) => {
 
 connectDB();
 
+// Error handler must always be created at the end.
+app.use((error, req, res, next) => {
+	res.status(500).json({ message: error.message });
+});
+
 app.listen(config.PORT, (error) => {
 	if (error) {
 		console.error(error);
