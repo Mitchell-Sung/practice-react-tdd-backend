@@ -1,7 +1,3 @@
-// const request = require('supertest');
-// const app = require('../../test/integration/product.int.test.js');
-// const newProduct = require('../../data/newProduct.json');
-
 import request from 'supertest';
 import app from '../../server.js';
 import newProduct from '../../data/newProduct.json';
