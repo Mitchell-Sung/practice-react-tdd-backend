@@ -1,0 +1,17 @@
+[
+	{
+		"name": "Dell XPS 17",
+		"description": "This is good laptop for developers",
+		"price": 2700
+	},
+	{
+		"name": "Dell XPS 15",
+		"description": "This is good laptop for developers",
+		"price": 2500
+	},
+	{
+		"name": "Dell XPS 13",
+		"description": "This is good laptop for developers",
+		"price": 2300
+	}
+]

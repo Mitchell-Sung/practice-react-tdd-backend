@@ -37,3 +37,10 @@ Product validation failed
 what does it mean????????
 Try running with --detectOpenHandles to find leask.
 
+# toBeTruth():
+falsy values: false, 0, '', null, undefined, and NaN
+
+# res._isEndCalled()
+  - Express' implementation of response.send() calls .end()
+  - Since .end() is not never called ._isEndCalled() returns false after
+    calls to .send()
