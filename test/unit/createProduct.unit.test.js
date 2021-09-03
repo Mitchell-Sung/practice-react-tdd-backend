@@ -4,6 +4,7 @@ import Products from '../../models/model.Products.js';
 import newProduct from '../../data/newProduct.json';
 
 Products.create = jest.fn();
+Products.find = jest.fn();
 
 let req, res, next;
 
@@ -33,7 +34,6 @@ describe('Product Controller Create', () => {
 		expect(res._isEndCalled()).toBeTruthy();
 	});
 
-	// Response results back
 	test('should return json body in response', async () => {
 		// "Products.create" is created by using Mock function.
 		Products.create.mockReturnValue(newProduct);
@@ -42,7 +42,6 @@ describe('Product Controller Create', () => {
 	});
 
 	test('should handle errors', async () => {
-		// This part is the area handled by the MongoDB.
 		const errorMessage = { message: 'description property missing' };
 		const rejectedPromise = Promise.reject(errorMessage);
 		Products.create.mockReturnValue(rejectedPromise);
