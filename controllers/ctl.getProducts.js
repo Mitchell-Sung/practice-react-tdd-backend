@@ -5,7 +5,7 @@ const getProducts = async (req, res, next) => {
 		const foundProducts = await Products.find({});
 		res.status(200).json(foundProducts);
 	} catch (error) {
-		console.error(error);
+		next(error);
 	}
 };
 
