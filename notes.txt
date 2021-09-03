@@ -32,3 +32,8 @@ npm run start
     - 개별 테스트를 수행하는 곳, 하나하나의 테스트를 작은 문장처럼 설명한다.
 
 # temporarily memo:
+Product validation failed
+
+what does it mean????????
+Try running with --detectOpenHandles to find leask.
+

@@ -8,3 +8,15 @@ test('POST /api/products', async () => {
 	expect(response.body.name).toBe(newProduct.name);
 	expect(response.body.description).toBe(newProduct.description);
 });
+
+test('should return 500 on POST /api/products', async () => {
+	// "request" from supertest package
+	const response = await request(app).post('/api/products').send({
+		name: 'MacBook Pro',
+	});
+	expect(response.statusCode).toBe(500);
+	console.log('response.body :>> ', response.body);
+	expect(response.body).toStrictEqual({
+		message: '',
+	});
+});

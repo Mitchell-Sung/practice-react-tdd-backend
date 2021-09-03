@@ -50,5 +50,3 @@ describe('Product Controller Create', () => {
 		expect(next).toBeCalledWith(errorMessage);
 	});
 });
-
-// async / await 사용한 비동기적 부분을 명확하게 이해할 것.
