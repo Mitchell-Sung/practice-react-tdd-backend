@@ -1,6 +1,7 @@
 import httpMocks from 'node-mocks-http';
 import getProductById from '../../controllers/ctl.getProductById.js';
 import Products from '../../models/model.Products.js';
+import newProduct from '../../data/newProduct.json';
 
 Products.findById = jest.fn();
 
@@ -22,5 +23,13 @@ describe('Product Controller GetById', () => {
 		req.params.productId = productId;
 		await getProductById(req, res, next);
 		expect(Products.findById).toBeCalledWith(productId);
+	});
+
+	test('should return json body and response code 200', async () => {
+		Products.findById.mockReturnValue(newProduct);
+		await getProductById(req, res, next);
+		expect(res.statusCode).toBe(200);
+		expect(res._getJSONData()).toStrictEqual(newProduct);
+		expect(res._isEndCalled()).toBeTruthy();
 	});
 });
