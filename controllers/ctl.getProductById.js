@@ -2,7 +2,7 @@ import Products from '../models/model.Products.js';
 
 const getProductById = async (req, res, next) => {
 	try {
-		// write here
+		await Products.findById(req.params.productId);
 	} catch (error) {
 		next(error);
 	}
