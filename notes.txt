@@ -44,3 +44,7 @@ falsy values: false, 0, '', null, undefined, and NaN
   - Express' implementation of response.send() calls .end()
   - Since .end() is not never called ._isEndCalled() returns false after
     calls to .send()
+
+# TESTING MONGOOSE WITH JEST:
+  - We strongly recommend using a different testing framework, like Mocha.
+  - Search "Testing Mongoose with Jest"
