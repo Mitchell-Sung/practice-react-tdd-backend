@@ -32,4 +32,19 @@ describe('Product Controller GetById', () => {
 		expect(res._getJSONData()).toStrictEqual(newProduct);
 		expect(res._isEndCalled()).toBeTruthy();
 	});
+
+	test('should return 404 when item does exist', async () => {
+		Products.findById.mockReturnValue(null);
+		await getProductById(req, res, next);
+		expect(res.statusCode).toBe(404);
+		expect(res._isEndCalled()).toBeTruthy();
+	});
+
+	test('should handle errors', async () => {
+		const errMsg = { message: 'error' };
+		const rejectedPromise = Promise.reject(errMsg);
+		Products.findById.mockReturnValue(rejectedPromise);
+		await getProductById(req, res, next);
+		expect(next).toHaveBeenCalledWith(errMsg);
+	});
 });
