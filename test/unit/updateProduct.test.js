@@ -42,6 +42,13 @@ describe('Product Controller Update', () => {
 		expect(res.statusCode).toBe(200);
 		expect(res._getJSONData()).toStrictEqual(newProduct);
 	});
+
+	test('should handle 404 when item does not exist', async () => {
+		Products.findByIdAndUpdate.mockReturnValue(null);
+		await updateProduct(req, res, next);
+		expect(res.statusCode).toBe(404);
+		expect(res._isEndCalled()).toBeTruthy();
+	});
 });
 
 // {new: true} = 업데이트 된 값을 리턴을 할 때 사용.
