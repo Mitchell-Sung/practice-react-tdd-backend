@@ -2,8 +2,14 @@ import httpMocks from 'node-mocks-http';
 import Products from '../../models/model.Products.js';
 import deleteProduct from '../../controllers/ctl.deleteProduct.js';
 
+// Delete product data:
+const deleteProductData = {
+	name: 'Deleted Product',
+	description: 'It has been deleted',
+};
+
 let req, res, next;
-// const existingProductId = '6133042da9a9a35f4ca893e8';
+const existingProductId = '6133042da9a9a35f4ca893e8';
 const nonExistingProductId = '6133042da9a9a35f4ca893c1';
 
 Products.findByIdAndDelete = jest.fn();
@@ -23,5 +29,13 @@ describe('Product Controller Delete', () => {
 		req.params.productId = nonExistingProductId;
 		await deleteProduct(req, res, next);
 		expect(Products.findByIdAndDelete).toBeCalledWith(nonExistingProductId);
+	});
+
+	test('should return 200 response', async () => {
+		Products.findByIdAndDelete.mockReturnValue(deleteProductData);
+		await deleteProduct(req, res, next);
+		expect(res.statusCode).toBe(200);
+		expect(res._getJSONData()).toStrictEqual(deleteProductData);
+		expect(res._isEndCalled()).toBeTruthy();
 	});
 });
