@@ -49,6 +49,14 @@ describe('Product Controller Update', () => {
 		expect(res.statusCode).toBe(404);
 		expect(res._isEndCalled()).toBeTruthy();
 	});
+
+	test('should handle errors', async () => {
+		const errMsg = { message: 'Error' };
+		const rejectedPromise = Promise.reject(errMsg);
+		Products.findByIdAndUpdate.mockReturnValue(rejectedPromise);
+		await updateProduct(req, res, next);
+		expect(next).toHaveBeenCalledWith(errMsg);
+	});
 });
 
 // {new: true} = 업데이트 된 값을 리턴을 할 때 사용.
