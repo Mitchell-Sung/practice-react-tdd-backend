@@ -1,7 +1,7 @@
 import Products from '../models/model.Products.js';
 
 const deleteProduct = async (req, res, next) => {
-	// write code
+	await Products.findByIdAndDelete(req.params.productId);
 };
 
 export default deleteProduct;
