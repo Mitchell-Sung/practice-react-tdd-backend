@@ -2,9 +2,14 @@ import Products from '../models/model.Products.js';
 
 const updateProduct = async (req, res, next) => {
 	try {
-		await Products.findByIdAndUpdate(req.params.productId, req.body, {
-			new: true,
-		});
+		const updatedProduct = await Products.findByIdAndUpdate(
+			req.params.productId,
+			req.body,
+			{
+				new: true,
+			}
+		);
+		res.status(200).json(updatedProduct);
 	} catch (error) {
 		next(error);
 	}
