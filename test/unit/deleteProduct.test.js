@@ -38,4 +38,19 @@ describe('Product Controller Delete', () => {
 		expect(res._getJSONData()).toStrictEqual(deleteProductData);
 		expect(res._isEndCalled()).toBeTruthy();
 	});
+
+	test('should handle 404 when item does not exist', async () => {
+		Products.findByIdAndDelete.mockReturnValue(null);
+		await deleteProduct(req, res, next);
+		expect(res.statusCode).toBe(404);
+		expect(res._isEndCalled()).toBeTruthy();
+	});
+
+	test('should handle errors', async () => {
+		const errMsg = { message: 'Error deleting' };
+		const rejectedPromise = Promise.reject(errMsg);
+		Products.findByIdAndDelete.mockReturnValue(rejectedPromise);
+		await deleteProduct(req, res, next);
+		expect(next).toHaveBeenCalledWith(errMsg);
+	});
 });
